@@ -35,8 +35,8 @@ public class HomeActivity extends AppCompatActivity {
             fio_in=cursor1.getString(1);
             name.setText(fio_in);
         }
-//        Intent intent = getIntent();
-//        String user = intent.getStringExtra("username");
-//        name.setText(user);
+        Intent intent = getIntent();
+        String user = intent.getStringExtra("username");
+        name.setText(user);
     }
 }
