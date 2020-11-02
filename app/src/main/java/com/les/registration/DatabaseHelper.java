@@ -13,6 +13,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static int version = 1;
     static final String TABLE = "users";
 
+    public static final String COLUMN_USERNAME = "username";
+
     static String createTableUsers = "CREATE TABLE if not exists `users` ( `id` INTEGER PRIMARY KEY AUTOINCREMENT, `username` TEXT," +
             " `password` TEXT, `email` TEXT, `country` TEXT, `dob` TEXT, `gender` TEXT)";
 

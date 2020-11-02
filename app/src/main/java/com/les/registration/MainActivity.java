@@ -25,16 +25,21 @@ public class MainActivity extends AppCompatActivity {
 
         databaseHelper = new DatabaseHelper(this);
 
+        Intent intentGet = getIntent();
+        String name = intentGet.getStringExtra("username");
+        String pas = intentGet.getStringExtra("password");
+        username.setText(name);
+        password.setText(pas);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String usernameValue = username.getText().toString();
                 String passwordValue = password.getText().toString();
-
                 if (databaseHelper.isLoginValid(usernameValue, passwordValue)) {
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-//                    intent.putExtra("username", usernameValue);
+                    intent.putExtra("username", usernameValue);
+                    intent.putExtra("password", passwordValue);
                     startActivity(intent);
                     Toast.makeText(MainActivity.this,"Оп Успех!", Toast.LENGTH_SHORT).show();
                 } else  {

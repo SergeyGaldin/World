@@ -22,5 +22,11 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="24sp"
-        android:textColor="@color/teal_200"/>
+        android:textColor="#FF3D00"/>
+
+    <Button
+        android:id="@+id/change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сменить логин и пароль"/>
 </LinearLayout>

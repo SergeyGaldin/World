@@ -55,6 +55,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
                     databaseHelper.insertUser(contentValues);
                     Toast.makeText(RegistrationActivity.this, "Успех!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                    intent.putExtra("username", usernameValue);
+                    intent.putExtra("password", passwordValue);
+                    intent.putExtra("email", emailValue);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(RegistrationActivity.this, "Провал!", Toast.LENGTH_SHORT).show();
                 }
