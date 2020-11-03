@@ -2,6 +2,7 @@ package com.les.registration;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,8 +18,6 @@ public class ChangeActivity extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
     SQLiteDatabase db;
-    Cursor userCursor;
-    long userId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,25 +29,41 @@ public class ChangeActivity extends AppCompatActivity {
         change_but = findViewById(R.id.change_but);
         delete_but = findViewById(R.id.delete_but);
 
-        change_but.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         databaseHelper = new DatabaseHelper(this);
-        db = databaseHelper.getWritableDatabase();
 
         Intent intent = getIntent();
         String log =  intent.getStringExtra("username");
         String pas =  intent.getStringExtra("password");
-
         login.setText(log);
         password.setText(pas);
+
+        change_but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db = databaseHelper.getWritableDatabase();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(DatabaseHelper.COLUMN_USERNAME, login.getText().toString());
+                contentValues.put(DatabaseHelper.COLUMN_PASSWORD, password.getText().toString());
+
+                db.update(DatabaseHelper.TABLE, contentValues,"username = ?", new String[] {log});
+                db.update(DatabaseHelper.TABLE, contentValues,"password = ?", new String[] {pas});
+
+                String login_save = login.getText().toString();
+                String password_save = password.getText().toString();
+                Toast.makeText(ChangeActivity.this, "Данные сохранены", Toast.LENGTH_SHORT).show();
+
+                Intent intentSave = new Intent(ChangeActivity.this, HomeActivity.class);
+                intentSave.putExtra("username", login_save);
+                intentSave.putExtra("password", password_save);
+                startActivity(intentSave);
+                db.close();
+            }
+        });
+
         delete_but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                db = databaseHelper.getWritableDatabase();
                 db.delete(DatabaseHelper.TABLE, "username = ?", new String[] {log});
                 Toast.makeText(ChangeActivity.this, "Пользователь удален!", Toast.LENGTH_SHORT).show();
                 Intent intentDel = new Intent(ChangeActivity.this, MainActivity.class);
