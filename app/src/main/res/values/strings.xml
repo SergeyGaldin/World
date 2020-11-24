@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">ProbSession</string>
+    <string name="name_bank">WorldSkills Bank</string>
+    <string name="name_branches">Отделения и банкоматы</string>
+    <string name="name_course">Курсы валют</string>
+    <string name="USD">USD</string>
+    <string name="EUR">EUR</string>
+    <string name="name_come">ВОЙТИ</string>
+
+
+    <string name="TitleAlert">Авторизация</string>
+    <string name="textAf">Введите Ваш логин и пароль</string>
+    <string name="hint_log">Логин</string>
+    <string name="hint_pas">Пароль</string>
+    <string name="cancel">Отменить</string>
+    <string name="add">Добавить</string>
+
+    <string name="del">Search people &amp; place</string>
+    <string name="text_main_main">Главная</string>
+    <string name="text_main_pay">Платежи</string>
+    <string name="text_main_his">История</string>
+    <string name="text_main_mes">Диалоги</string>
+</resources>
